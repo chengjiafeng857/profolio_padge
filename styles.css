@@ -810,6 +810,10 @@ section {
         gap: 2rem;
     }
     
+    .hero-image {
+        display: none;
+    }
+    
     .hero-buttons {
         flex-direction: column;
         align-items: center;
