@@ -1,3 +1,62 @@
+/* CSS Variables for Theme */
+:root {
+    /* Light theme colors */
+    --bg-primary: #ffffff;
+    --bg-secondary: #f5f7fa;
+    --bg-tertiary: #c3cfe2;
+    --text-primary: #333;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --border-color: #e1e5e9;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+    --navbar-bg: rgba(255, 255, 255, 0.95);
+    --card-bg: #ffffff;
+    --timeline-bg: #ffffff;
+    --input-bg: #ffffff;
+    --input-border: #e1e5e9;
+    --accent-color: #667eea;
+    --accent-secondary: #764ba2;
+}
+
+/* Dark theme colors */
+[data-theme="dark"] {
+    --bg-primary: #1a1a1a;
+    --bg-secondary: #2d2d2d;
+    --bg-tertiary: #404040;
+    --text-primary: #ffffff;
+    --text-secondary: #cccccc;
+    --text-muted: #999999;
+    --border-color: #404040;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --navbar-bg: rgba(26, 26, 26, 0.95);
+    --card-bg: #2d2d2d;
+    --timeline-bg: #2d2d2d;
+    --input-bg: #404040;
+    --input-border: #555555;
+    --accent-color: #667eea;
+    --accent-secondary: #764ba2;
+}
+
+/* Additional dark mode styles */
+[data-theme="dark"] .tech-tag {
+    background: #404040;
+    color: #667eea;
+}
+
+[data-theme="dark"] .hero-avatar::before {
+    opacity: 0.8;
+}
+
+[data-theme="dark"] .btn-secondary {
+    border-color: var(--accent-color);
+    color: var(--accent-color);
+}
+
+[data-theme="dark"] .btn-secondary:hover {
+    background: var(--accent-color);
+    color: white;
+}
+
 /* Reset and Base Styles */
 * {
     margin: 0;
@@ -12,8 +71,9 @@ html {
 body {
     font-family: 'Inter', sans-serif;
     line-height: 1.6;
-    color: #333;
-    background-color: #ffffff;
+    color: var(--text-primary);
+    background-color: var(--bg-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 .container {
@@ -81,7 +141,7 @@ p {
     position: fixed;
     top: 0;
     width: 100%;
-    background: rgba(255, 255, 255, 0.95);
+    background: var(--navbar-bg);
     backdrop-filter: blur(10px);
     z-index: 1000;
     padding: 1rem 0;
@@ -100,7 +160,7 @@ p {
 .nav-logo a {
     font-size: 1.5rem;
     font-weight: 700;
-    color: #333;
+    color: var(--text-primary);
     text-decoration: none;
 }
 
@@ -111,7 +171,7 @@ p {
 }
 
 .nav-link {
-    color: #333;
+    color: var(--text-primary);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
@@ -119,7 +179,7 @@ p {
 }
 
 .nav-link:hover {
-    color: #667eea;
+    color: var(--accent-color);
 }
 
 .nav-link::after {
@@ -129,7 +189,7 @@ p {
     left: 0;
     width: 0;
     height: 2px;
-    background: #667eea;
+    background: var(--accent-color);
     transition: width 0.3s ease;
 }
 
@@ -147,9 +207,52 @@ p {
 .bar {
     width: 25px;
     height: 3px;
-    background: #333;
+    background: var(--text-primary);
     margin: 3px 0;
     transition: 0.3s;
+}
+
+/* Theme Toggle Button */
+.theme-toggle {
+    margin-left: 1rem;
+}
+
+.theme-toggle-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    transition: all 0.3s ease;
+    background-color: var(--card-bg);
+    border: 1px solid var(--border-color);
+}
+
+.theme-toggle-btn:hover {
+    background-color: var(--bg-secondary);
+    transform: scale(1.1);
+}
+
+.theme-toggle-btn svg {
+    width: 20px;
+    height: 20px;
+    transition: all 0.3s ease;
+}
+
+.theme-toggle-btn .moon-icon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle-btn .sun-icon {
+    display: none;
+}
+
+[data-theme="dark"] .theme-toggle-btn .moon-icon {
+    display: block;
 }
 
 /* Hero Section */
@@ -157,7 +260,7 @@ p {
     min-height: 100vh;
     display: flex;
     align-items: center;
-    background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    background: linear-gradient(135deg, var(--bg-secondary) 0%, var(--bg-tertiary) 100%);
     padding-top: 80px;
 }
 
@@ -174,13 +277,13 @@ p {
 .hero-title {
     font-size: 3.5rem;
     margin-bottom: 1rem;
-    color: #333;
+    color: var(--text-primary);
     opacity: 0;
     animation: fadeInUp 1s ease forwards;
 }
 
 .highlight {
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-secondary) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -188,7 +291,7 @@ p {
 
 .hero-subtitle {
     font-size: 1.5rem;
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 1rem;
     opacity: 0;
     animation: fadeInUp 1s ease 0.2s forwards;
@@ -196,7 +299,7 @@ p {
 
 .hero-description {
     font-size: 1.1rem;
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 2rem;
     line-height: 1.7;
     opacity: 0;
@@ -224,11 +327,11 @@ p {
     justify-content: center;
     width: 50px;
     height: 50px;
-    background: white;
+    background: var(--card-bg);
     border-radius: 50%;
-    color: #667eea;
+    color: var(--accent-color);
     transition: all 0.3s ease;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px var(--shadow-color);
 }
 
 .hero-social a:hover {
@@ -249,7 +352,7 @@ p {
     height: 350px;
     border-radius: 50%;
     overflow: hidden;
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 20px 40px var(--shadow-color);
     position: relative;
 }
 
@@ -260,7 +363,7 @@ p {
     left: -5px;
     right: -5px;
     bottom: -5px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-secondary) 100%);
     border-radius: 50%;
     z-index: -1;
 }
@@ -298,13 +401,13 @@ section {
     transform: translateX(-50%);
     width: 60px;
     height: 4px;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-secondary) 100%);
     border-radius: 2px;
 }
 
 /* About Section */
 .about {
-    background: #f8f9fa;
+    background: var(--bg-secondary);
 }
 
 .about-content {
@@ -336,9 +439,9 @@ section {
 .stat {
     text-align: center;
     padding: 2rem;
-    background: white;
+    background: var(--card-bg);
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px var(--shadow-color);
     transition: transform 0.3s ease;
     opacity: 0;
     transform: translateY(30px);
@@ -355,12 +458,12 @@ section {
 
 .stat h3 {
     font-size: 2.5rem;
-    color: #667eea;
+    color: var(--accent-color);
     margin-bottom: 0.5rem;
 }
 
 .stat p {
-    color: #666;
+    color: var(--text-secondary);
     margin: 0;
 }
 
@@ -378,7 +481,7 @@ section {
     top: 0;
     bottom: 0;
     width: 2px;
-    background: #667eea;
+    background: var(--accent-color);
     transform: translateX(-50%);
 }
 
@@ -410,7 +513,7 @@ section {
     position: absolute;
     width: 20px;
     height: 20px;
-    background: #667eea;
+    background: var(--accent-color);
     border-radius: 50%;
     top: 0;
 }
@@ -424,10 +527,10 @@ section {
 }
 
 .timeline-content {
-    background: white;
+    background: var(--timeline-bg);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px var(--shadow-color);
     transition: transform 0.3s ease;
 }
 
@@ -436,17 +539,17 @@ section {
 }
 
 .timeline-content h3 {
-    color: #333;
+    color: var(--text-primary);
     margin-bottom: 0.5rem;
 }
 
 .timeline-content h4 {
-    color: #667eea;
+    color: var(--accent-color);
     margin-bottom: 0.5rem;
 }
 
 .timeline-date {
-    color: #666;
+    color: var(--text-secondary);
     font-size: 0.9rem;
     margin-bottom: 1rem;
     display: block;
@@ -461,19 +564,19 @@ section {
     position: relative;
     padding-left: 1.5rem;
     margin-bottom: 0.5rem;
-    color: #666;
+    color: var(--text-secondary);
 }
 
 .timeline-content li::before {
     content: '▸';
     position: absolute;
     left: 0;
-    color: #667eea;
+    color: var(--accent-color);
 }
 
 /* Projects Section */
 .projects {
-    background: #f8f9fa;
+    background: var(--bg-secondary);
 }
 
 .projects-grid {
@@ -483,10 +586,10 @@ section {
 }
 
 .project-card {
-    background: white;
+    background: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px var(--shadow-color);
     transition: all 0.3s ease;
     opacity: 0;
     transform: translateY(30px);
@@ -499,7 +602,7 @@ section {
 
 .project-card:hover {
     transform: translateY(-10px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    box-shadow: 0 20px 40px var(--shadow-color);
 }
 
 .project-image {
@@ -524,11 +627,11 @@ section {
 
 .project-content h3 {
     margin-bottom: 1rem;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .project-content p {
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 1.5rem;
 }
 
@@ -554,14 +657,14 @@ section {
 }
 
 .project-link {
-    color: #667eea;
+    color: var(--accent-color);
     text-decoration: none;
     font-weight: 500;
     transition: color 0.3s ease;
 }
 
 .project-link:hover {
-    color: #764ba2;
+    color: var(--accent-secondary);
 }
 
 /* Skills Section */
@@ -572,10 +675,10 @@ section {
 }
 
 .skill-category {
-    background: white;
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px var(--shadow-color);
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.6s ease;
@@ -588,7 +691,7 @@ section {
 
 .skill-category h3 {
     margin-bottom: 1.5rem;
-    color: #333;
+    color: var(--text-primary);
     text-align: center;
 }
 
@@ -606,19 +709,19 @@ section {
 
 .skill-name {
     font-weight: 500;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .skill-bar {
     height: 8px;
-    background: #e0e0e0;
+    background: var(--border-color);
     border-radius: 4px;
     overflow: hidden;
 }
 
 .skill-progress {
     height: 100%;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-secondary) 100%);
     border-radius: 4px;
     transition: width 1s ease;
     width: 0;
@@ -626,7 +729,7 @@ section {
 
 /* Contact Section */
 .contact {
-    background: #f8f9fa;
+    background: var(--bg-secondary);
 }
 
 .contact-content {
@@ -649,11 +752,11 @@ section {
 
 .contact-info h3 {
     margin-bottom: 1rem;
-    color: #333;
+    color: var(--text-primary);
 }
 
 .contact-info p {
-    color: #666;
+    color: var(--text-secondary);
     margin-bottom: 2rem;
 }
 
@@ -667,28 +770,28 @@ section {
     display: flex;
     align-items: center;
     gap: 1rem;
-    color: #666;
+    color: var(--text-secondary);
 }
 
 .contact-item svg {
-    color: #667eea;
+    color: var(--accent-color);
 }
 
 .contact-item a {
-    color: #666;
+    color: var(--text-secondary);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .contact-item a:hover {
-    color: #667eea;
+    color: var(--accent-color);
 }
 
 .contact-form {
-    background: white;
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: 12px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px var(--shadow-color);
     opacity: 0;
     transform: translateY(30px);
     transition: all 0.6s ease;
@@ -707,17 +810,19 @@ section {
 .form-group textarea {
     width: 100%;
     padding: 12px 16px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid var(--input-border);
     border-radius: 8px;
     font-size: 1rem;
     transition: border-color 0.3s ease;
     font-family: inherit;
+    background-color: var(--input-bg);
+    color: var(--text-primary);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
     outline: none;
-    border-color: #667eea;
+    border-color: var(--accent-color);
 }
 
 .form-group textarea {
@@ -727,8 +832,8 @@ section {
 
 /* Footer */
 .footer {
-    background: #333;
-    color: white;
+    background: var(--bg-tertiary);
+    color: var(--text-primary);
     padding: 2rem 0;
     text-align: center;
 }
@@ -745,13 +850,13 @@ section {
 }
 
 .footer-links a {
-    color: white;
+    color: var(--text-primary);
     text-decoration: none;
     transition: color 0.3s ease;
 }
 
 .footer-links a:hover {
-    color: #667eea;
+    color: var(--accent-color);
 }
 
 /* Animations */
@@ -768,6 +873,10 @@ section {
 
 /* Responsive Design */
 @media (max-width: 768px) {
+    .theme-toggle {
+        margin-left: 0.5rem;
+    }
+    
     .hamburger {
         display: flex;
     }
@@ -777,11 +886,11 @@ section {
         left: -100%;
         top: 70px;
         flex-direction: column;
-        background-color: white;
+        background-color: var(--card-bg);
         width: 100%;
         text-align: center;
         transition: 0.3s;
-        box-shadow: 0 10px 27px rgba(0, 0, 0, 0.05);
+        box-shadow: 0 10px 27px var(--shadow-color);
         padding: 2rem 0;
     }
     
