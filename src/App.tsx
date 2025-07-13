@@ -31,14 +31,16 @@ function App() {
     const scrollY = window.scrollY;
     
     if (scrollY > 50) {
+      // Make navbar 30% transparent and add a stronger shadow in dark mode
       if (theme === 'dark') {
-        navbar.style.background = 'rgba(26, 26, 26, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.3)';
+        navbar.style.background = 'rgba(26, 26, 26, 0.7)';
+        navbar.style.boxShadow = '0 2px 24px rgba(0,0,0,0.35)';
       } else {
-        navbar.style.background = 'rgba(255, 255, 255, 0.98)';
-        navbar.style.boxShadow = '0 2px 20px rgba(0, 0, 0, 0.1)';
+        navbar.style.background = 'rgba(255, 255, 255, 0.7)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
       }
     } else {
+      // Restore original background at the top
       if (theme === 'dark') {
         navbar.style.background = 'rgba(26, 26, 26, 0.95)';
         navbar.style.boxShadow = 'none';
