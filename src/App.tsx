@@ -75,9 +75,16 @@ function App() {
         e.preventDefault();
         const target = document.querySelector(this.getAttribute('href')!);
         if (target) {
-          target.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
+          // Get navbar height for offset calculation
+          const navbar = document.querySelector('.navbar') as HTMLElement;
+          const navbarHeight = navbar ? navbar.offsetHeight : 0;
+          
+          // Calculate target position with navbar offset
+          const targetPosition = (target as HTMLElement).offsetTop - navbarHeight;
+          
+          window.scrollTo({
+            top: targetPosition,
+            behavior: 'smooth'
           });
         }
       });
@@ -758,7 +765,7 @@ function App() {
       <footer className="footer">
         <div className="container">
           <div className="footer-content">
-            <p>&copy; 2024 Chengjia Feng. All rights reserved.</p>
+            <p>&copy; 2025 Chengjia Feng. All rights reserved.</p>
             <div className="footer-links">
               <a href="#home">Home</a>
               <a href="#about">About</a>

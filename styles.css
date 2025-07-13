@@ -1455,3 +1455,15 @@ body {
         z-index: 1001;
     }
 }
+
+@media (max-width: 768px) {
+    .hero {
+        margin-top: 70px;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero {
+        margin-top: 60px;
+    }
+}
