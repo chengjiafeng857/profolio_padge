@@ -421,7 +421,7 @@ function App() {
             <div className="timeline-item">
               <div className="timeline-marker"></div>
               <div className="timeline-content">
-                <h3>Undergraduate study</h3>
+                <h3>Undergraduate Student</h3>
                 <h4>University of Electronic Science and Technology of China</h4>
                 <span className="timeline-date">Sep 2018 - Jul 2022</span>
                 <ul>
