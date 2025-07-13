@@ -34,7 +34,7 @@ function App() {
       // Make navbar 30% transparent and add a stronger shadow in dark mode
       if (theme === 'dark') {
         navbar.style.background = 'rgba(26, 26, 26, 0.7)';
-        navbar.style.boxShadow = '0 2px 24px rgba(0,0,0,0.35)';
+        navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.35)';
       } else {
         navbar.style.background = 'rgba(255, 255, 255, 0.7)';
         navbar.style.boxShadow = '0 2px 20px rgba(0,0,0,0.15)';
